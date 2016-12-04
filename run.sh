@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# sbt clean
-# sbt package
+#sbt clean && sbt package
 
 spark-submit    \
   --class "YoutubeVideos"           \
