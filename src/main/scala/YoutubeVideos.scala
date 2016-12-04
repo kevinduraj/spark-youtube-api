@@ -27,12 +27,16 @@ object YoutubeVideos {
         val sqlContext = new org.apache.spark.sql.SQLContext(sc)
         import sqlContext.implicits._
 
-        val df = sqlContext.read.format("org.apache.spark.sql.cassandra").options(Map( "table" -> "video2", "keyspace" -> "youtube" )).load()
-        df.printSchema()
-        df.registerTempTable("video")
-        val new_videos = sqlContext.sql("SELECT video_id, video_title, ts_stats_update FROM video WHERE ts_stats_update <= '2000-00-00 00:00:00+0000'")
-        new_videos.show(100, false)
-
+        val df1 = sqlContext.read.format("org.apache.spark.sql.cassandra").options(Map( "table" -> "video2", "keyspace" -> "youtube" )).load()
+        df1.printSchema()
+        df1.registerTempTable("video")
+        
+        val df2 = sqlContext.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
+        df2.show(100, false)
+        val df3 = df2.coalesce(1)
+        df3.write.format("com.databricks.spark.csv").mode(SaveMode.Overwrite).save("/home/fresno/video.csv")
+        
+        
         sc.stop();
 
     }
