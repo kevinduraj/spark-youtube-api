@@ -1,8 +1,8 @@
 Cassandra 2.1 | DSE 4.8.8 | CQL spec 3.2.1 | Native protocol v3
 ===============================================================
-### ts_data_update
-* 467857
-* 467857
+### ts_stat_update
+* 385887 
+* 319658
 
 ### Table Counter
 

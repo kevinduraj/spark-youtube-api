@@ -12,10 +12,11 @@ elif [ "$1" == "1" ] 2>/dev/null; then
 
 spark-submit    \
   --class "YoutubeVideos"           \
-  --master local[8]                 \
+  --master local[16]                \
   --driver-memory   32G             \
   --executor-memory 16G             \
-  target/scala-2.11/spark-cassandra_2.11-1.0.jar 
+  target/scala-2.11/spark-cassandra_2.11-1.0.jar \
+  "count_null"
 
 
 #--------------------------------------------------------------------------------------------------------#

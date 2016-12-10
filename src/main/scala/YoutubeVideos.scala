@@ -20,9 +20,9 @@ object YoutubeVideos {
 
     def main(args: Array[String]) {
 
-        // count_all();
-        count_null();
-        //export_null();
+        //count_all();
+        //count_null();
+        export_null();
 
     }
 
@@ -36,7 +36,7 @@ object YoutubeVideos {
         df1.createOrReplaceTempView("video")
 
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
-        val df2 = spark.sql("SELECT count(video_id) FROM video WHERE ts_data_update IS NULL")
+        val df2 = spark.sql("SELECT count(video_id) ts_stats_update FROM video WHERE ts_stats_update IS NULL")
         df2.show()
 
     }
@@ -66,14 +66,14 @@ object YoutubeVideos {
         df1.createOrReplaceTempView("video")
 
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
-        val df2 = spark.sql("SELECT video_id FROM video WHERE ts_data_update IS NULL")
+        val df2 = spark.sql("SELECT video_id FROM video WHERE video_title IS NULL")
         println("NULL = " + df2.count())
         df2.show(25, false)
 
         //df2.write.format("org.apache.spark.sql.cassandra").options(Map("keyspace" -> "youtube", "table" -> "video1")).mode("append").save()
 
         val df3 = df2.coalesce(1)
-        df3.write.format("com.databricks.spark.csv").mode(SaveMode.Overwrite).save("/home/fresno/video1")
+        df3.write.format("com.databricks.spark.csv").mode(SaveMode.Overwrite).save("/home/fresno/video_null")
 
     }
 
