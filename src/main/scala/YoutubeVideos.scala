@@ -20,10 +20,13 @@ object YoutubeVideos {
 
     def main(args: Array[String]) {
 
-        //count_all();
-        //count_null();
-        export_null();
-
+        if(args(0) == "count_null") {
+            count_null();
+        } else if(args(0) == "count_all" ) {
+            count_all();
+        } else if(args(0) == "export_null")  {
+            export_null();
+        }
     }
 
     def count_null() {
@@ -38,7 +41,6 @@ object YoutubeVideos {
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
         val df2 = spark.sql("SELECT count(video_id) ts_stats_update FROM video WHERE ts_stats_update IS NULL")
         df2.show()
-
     }
 
     def count_all() {
