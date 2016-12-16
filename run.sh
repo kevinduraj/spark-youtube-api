@@ -55,6 +55,7 @@ else
 
   echo "+--------------------------------------------------+"
   echo "| ./run.sh 0 -- mvn clean install                  |"
+  echo "+--------------------------------------------------+"
   echo "| ./run.sh 1 -- count_not_null                     |"
   echo "| ./run.sh 2 -- count_null                         |"
   echo "| ./run.sh 3 -- count_all                          |"
