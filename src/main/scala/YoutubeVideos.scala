@@ -29,9 +29,7 @@ object YoutubeVideos {
             count_all();
         } else if(args(0) == "export_null")  {
             export_null();
-        } else if(args(0) == "export_not_null")  {
-            export_not_null();
-        }
+        } 
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
