@@ -30,8 +30,8 @@ object YoutubeVideos {
         } else if(args(0) == "partial" ) {
             partial();
 
-        } else if(args(0) == "export_null")  {
-            export_null();
+        } else if(args(0) == "export_partial")  {
+            export_partial();
         }
 
     }
@@ -56,7 +56,7 @@ object YoutubeVideos {
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
     def completed() {
 
-        val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "some-value").getOrCreate()
+        val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "completed").getOrCreate()
         import spark.implicits._
 
         val df1 = spark.read.format("org.apache.spark.sql.cassandra").options(Map( "table" -> "video2", "keyspace" -> "youtube" )).load()
@@ -72,7 +72,7 @@ object YoutubeVideos {
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
     def partial() {
 
-        val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "some-value").getOrCreate()
+        val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "partial").getOrCreate()
         import spark.implicits._
 
         val df1 = spark.read.format("org.apache.spark.sql.cassandra").options(Map( "table" -> "video2", "keyspace" -> "youtube" )).load()
@@ -87,9 +87,9 @@ object YoutubeVideos {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
-    def export_null() {
+    def export_partial() {
 
-        val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "some-value").getOrCreate()
+        val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "export_partial").getOrCreate()
         import spark.implicits._
 
         val df1 = spark.read.format("org.apache.spark.sql.cassandra").options(Map( "table" -> "video2", "keyspace" -> "youtube" )).load()
