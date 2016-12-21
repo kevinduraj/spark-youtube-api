@@ -46,7 +46,7 @@ object YoutubeVideos {
         df1.createOrReplaceTempView("video")
 
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
-        val df2 = spark.sql("SELECT count(video_id) FROM video")
+        val df2 = spark.sql("SELECT count(video_id) total_videos FROM video")
         df2.show()
 
     }
