@@ -21,7 +21,7 @@ object YoutubeVideos {
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
     def main(args: Array[String]) {
 
-        f(args(0) == "count_all" ) {
+        if(args(0) == "count_all" ) {
             count_all();
 
         } else if(args(0) == "count_not_null") {
