@@ -15,7 +15,8 @@ spark-submit                                        \
   --driver-memory   32G                             \
   --executor-memory 16G                             \
   target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "count_not_null"
+  "count_all"
+
 
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "2" ] 2>/dev/null; then
@@ -26,7 +27,7 @@ spark-submit                                        \
   --driver-memory   32G                             \
   --executor-memory 16G                             \
   target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "count_null"
+  "count_not_null"
 
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "3" ] 2>/dev/null; then
@@ -37,7 +38,7 @@ spark-submit                                        \
   --driver-memory   32G                             \
   --executor-memory 16G                             \
   target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "count_all"
+  "count_null"
 
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "4" ] 2>/dev/null; then
@@ -56,9 +57,9 @@ else
   echo "+--------------------------------------------------+"
   echo "| ./run.sh 0 -- mvn clean install                  |"
   echo "+--------------------------------------------------+"
-  echo "| ./run.sh 1 -- count_not_null                     |"
-  echo "| ./run.sh 2 -- count_null                         |"
-  echo "| ./run.sh 3 -- count_all                          |"
+  echo "| ./run.sh 1 -- count_all                          |"
+  echo "| ./run.sh 2 -- count_not_null                     |"
+  echo "| ./run.sh 3 -- count_null                         |"
   echo "| ./run.sh 4 -- export_null                        |"
   echo "+--------------------------------------------------+"
 
