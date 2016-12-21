@@ -15,7 +15,7 @@ spark-submit                                        \
   --driver-memory   32G                             \
   --executor-memory 16G                             \
   target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "count_all"
+  "total"
 
 
 #-----------------------------------------------------------------------------------#
@@ -27,7 +27,7 @@ spark-submit                                        \
   --driver-memory   32G                             \
   --executor-memory 16G                             \
   target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "count_not_null"
+  "completed"
 
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "3" ] 2>/dev/null; then
@@ -38,7 +38,7 @@ spark-submit                                        \
   --driver-memory   32G                             \
   --executor-memory 16G                             \
   target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "count_null"
+  "partial"
 
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "4" ] 2>/dev/null; then
@@ -54,14 +54,14 @@ spark-submit                                        \
 #-----------------------------------------------------------------------------------#
 else
 
-  echo "+--------------------------------------------------+"
-  echo "| ./run.sh 0 -- mvn clean install                  |"
-  echo "+--------------------------------------------------+"
-  echo "| ./run.sh 1 -- count_all                          |"
-  echo "| ./run.sh 2 -- count_not_null                     |"
-  echo "| ./run.sh 3 -- count_null                         |"
-  echo "| ./run.sh 4 -- export_null                        |"
-  echo "+--------------------------------------------------+"
+  echo "+---------------------------------------------+"
+  echo "| ./run.sh 0 -- mvn clean install             |"
+  echo "+---------------------------------------------+"
+  echo "| ./run.sh 1 -- total                         |"
+  echo "| ./run.sh 2 -- completed                     |"
+  echo "| ./run.sh 3 -- partial                       |"
+  echo "| ./run.sh 4 -- export_null                   |"
+  echo "+---------------------------------------------+"
 
 fi
 #-----------------------------------------------------------------------------------#

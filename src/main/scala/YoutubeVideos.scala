@@ -21,14 +21,14 @@ object YoutubeVideos {
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
     def main(args: Array[String]) {
 
-        if(args(0) == "count_all" ) {
-            count_all();
+        if(args(0) == "total" ) {
+            total();
 
-        } else if(args(0) == "count_not_null") {
-            count_not_null();
+        } else if(args(0) == "completed") {
+            completed();
 
-        } else if(args(0) == "count_null" ) {
-            count_null();
+        } else if(args(0) == "partial" ) {
+            partial();
 
         } else if(args(0) == "export_null")  {
             export_null();
@@ -36,7 +36,7 @@ object YoutubeVideos {
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
-    def count_all() {
+    def total() {
 
         val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "some-value").getOrCreate()
         import spark.implicits._
@@ -46,13 +46,13 @@ object YoutubeVideos {
         df1.createOrReplaceTempView("video")
 
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
-        val df2 = spark.sql("SELECT count(video_id) total_videos FROM video")
+        val df2 = spark.sql("SELECT count(video_id) total FROM video")
         df2.show()
 
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
-    def count_not_null() {
+    def completed() {
 
         val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "some-value").getOrCreate()
         import spark.implicits._
@@ -62,11 +62,11 @@ object YoutubeVideos {
         df1.createOrReplaceTempView("video")
 
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
-        val df2 = spark.sql("SELECT count(video_id) full_videos FROM video WHERE ts_stats_update IS NOT NULL")
+        val df2 = spark.sql("SELECT count(video_id) completed FROM video WHERE ts_stats_update IS NOT NULL")
         df2.show()
     }
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
-    def count_null() {
+    def partial() {
 
         val spark = SparkSession.builder().appName("YoutubeVideos").config("spark.some.config.option", "some-value").getOrCreate()
         import spark.implicits._
@@ -76,7 +76,7 @@ object YoutubeVideos {
         df1.createOrReplaceTempView("video")
 
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
-        val df2 = spark.sql("SELECT count(video_id) new_videos FROM video WHERE ts_stats_update IS NULL")
+        val df2 = spark.sql("SELECT count(video_id) partial FROM video WHERE ts_stats_update IS NULL")
         df2.show()
     }
 
