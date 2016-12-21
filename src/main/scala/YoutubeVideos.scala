@@ -32,7 +32,8 @@ object YoutubeVideos {
 
         } else if(args(0) == "export_null")  {
             export_null();
-        } 
+        }
+
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
@@ -49,6 +50,7 @@ object YoutubeVideos {
         val df2 = spark.sql("SELECT count(video_id) total FROM video")
         df2.show()
 
+        spark.stop()
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
@@ -64,6 +66,8 @@ object YoutubeVideos {
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
         val df2 = spark.sql("SELECT count(video_id) completed FROM video WHERE ts_stats_update IS NOT NULL")
         df2.show()
+
+        spark.stop()
     }
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
     def partial() {
@@ -78,6 +82,8 @@ object YoutubeVideos {
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
         val df2 = spark.sql("SELECT count(video_id) partial FROM video WHERE ts_stats_update IS NULL")
         df2.show()
+
+        spark.stop()
     }
 
     /*-------------------------------------------------------------------------------------------------------------------------------------*/
@@ -100,6 +106,8 @@ object YoutubeVideos {
 
         val df3 = df2.coalesce(1)
         df3.write.format("com.databricks.spark.csv").mode(SaveMode.Overwrite).save("/home/fresno/video_null")
+
+        spark.stop()
 
     }
 

@@ -8,14 +8,16 @@
 
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "1" ] 2>/dev/null; then
+#    --master spark://69.13.39.34:7077                  \
+#    --master spark://myhealthcare.com:7077              \
 
-spark-submit                                        \
-  --class "YoutubeVideos"                           \
-  --master local[16]                                \
-  --driver-memory   32G                             \
-  --executor-memory 16G                             \
-  target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "total"
+spark-submit                                            \
+    --class "YoutubeVideos"                             \
+    --master spark://69.13.39.34:7077                   \
+    --driver-memory   32G                               \
+    --executor-memory 16G                               \
+    target/scala-2.11/spark-cassandra_2.11-1.0.jar      \
+    "total"
 
 
 #-----------------------------------------------------------------------------------#
