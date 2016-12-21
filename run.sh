@@ -13,7 +13,8 @@ elif [ "$1" == "1" ] 2>/dev/null; then
 
 spark-submit                                            \
     --class "YoutubeVideos"                             \
-    --master spark://69.13.39.34:7077                   \
+    --master local[16]                                  \
+#    --master spark://69.13.39.34:7077                   \
     --driver-memory   32G                               \
     --executor-memory 16G                               \
     target/scala-2.11/spark-cassandra_2.11-1.0.jar      \
@@ -23,35 +24,38 @@ spark-submit                                            \
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "2" ] 2>/dev/null; then
 
-spark-submit                                        \
-  --class "YoutubeVideos"                           \
-  --master local[16]                                \
-  --driver-memory   32G                             \
-  --executor-memory 16G                             \
-  target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "completed"
+spark-submit                                            \
+    --class "YoutubeVideos"                             \
+    --master local[16]                                  \
+#    --master spark://69.13.39.34:7077                   \
+    --driver-memory   32G                               \
+    --executor-memory 16G                               \
+    target/scala-2.11/spark-cassandra_2.11-1.0.jar      \
+    "completed"
 
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "3" ] 2>/dev/null; then
 
-spark-submit                                        \
-  --class "YoutubeVideos"                           \
-  --master local[16]                                \
-  --driver-memory   32G                             \
-  --executor-memory 16G                             \
-  target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "partial"
+spark-submit                                            \
+    --class "YoutubeVideos"                             \
+    --master local[16]                                  \
+#    --master spark://69.13.39.34:7077                   \
+    --driver-memory   32G                               \
+    --executor-memory 16G                               \
+    target/scala-2.11/spark-cassandra_2.11-1.0.jar      \
+    "partial"
 
 #-----------------------------------------------------------------------------------#
 elif [ "$1" == "4" ] 2>/dev/null; then
 
-spark-submit                                        \
-  --class "YoutubeVideos"                           \
-  --master local[16]                                \
-  --driver-memory   32G                             \
-  --executor-memory 16G                             \
-  target/scala-2.11/spark-cassandra_2.11-1.0.jar    \
-  "export_null"
+spark-submit                                            \
+    --class "YoutubeVideos"                             \
+    --master local[16]                                  \
+#    --master spark://69.13.39.34:7077                   \
+    --driver-memory   32G                               \
+    --executor-memory 16G                               \
+    target/scala-2.11/spark-cassandra_2.11-1.0.jar      \
+    "export_null"
 
 #-----------------------------------------------------------------------------------#
 else
