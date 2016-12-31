@@ -98,14 +98,14 @@ object YoutubeVideos {
 
         //val df2 = spark.sql("SELECT video_id, video_title, ts_data_update FROM video WHERE ts_data_update <= '2016-12-04 00:00:00+0000'")
         //val df2 = spark.sql("SELECT video_id FROM video WHERE video_title = '37a6259cc0c1dae299a7866489dff0bd'")
-        val df2 = spark.sql("SELECT video_id FROM video WHERE ts_stats_update IS NULL")
+        val df2 = spark.sql("SELECT video_id FROM video WHERE video_title IS NULL")
         println("NULL = " + df2.count())
         df2.show(25, false)
 
         //df2.write.format("org.apache.spark.sql.cassandra").options(Map("keyspace" -> "youtube", "table" -> "video1")).mode("append").save()
 
         val df3 = df2.coalesce(1)
-        df3.write.format("com.databricks.spark.csv").mode(SaveMode.Overwrite).save("/home/fresno/video_null")
+        df3.write.format("com.databricks.spark.csv").mode(SaveMode.Overwrite).save("/home/fresno/video2")
 
         spark.stop()
 

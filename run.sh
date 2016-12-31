@@ -47,7 +47,7 @@ elif [ "$1" == "4" ] 2>/dev/null; then
 
 time spark-submit                                       \
     --class "YoutubeVideos"                             \
-    --master $CLUSTER                                   \
+    --master local[16]                                  \
     --driver-memory   32G                               \
     --executor-memory 16G                               \
     target/scala-2.11/spark-cassandra_2.11-1.0.jar      \
